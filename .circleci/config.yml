@@ -2,8 +2,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: holoshare/holoshare_api:0.1.0
+      - image: elixir:1.6
         environment:
+          MIX_ENV: test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_HOST: localhost
@@ -13,5 +14,9 @@ jobs:
           POSTGRES_PASSWORD: postgres
     steps:
       - checkout
-      - run: mix deps.get
+      - run: mix local.hex --force && mix local.rebar --force
+      - run: mix do deps.get, deps.compile
+      - run:
+          name: Wait for PostgreSQL
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
       - run: mix test
