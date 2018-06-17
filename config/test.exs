@@ -12,8 +12,8 @@ config :logger, level: :warn
 # Configure your database
 config :holoshare_api, HoloshareApi.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: System.get_env("POSTGRES_USER"),
+  password: System.get_env("POSTGRES_PASSWORD"),
   database: "holoshare_api_test",
-  hostname: "localhost",
+  hostname: System.get_env("POSTGRES_HOST"),
   pool: Ecto.Adapters.SQL.Sandbox
