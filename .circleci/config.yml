@@ -2,13 +2,13 @@ version: 2
 jobs:
   build:
     docker:
-      - image: elixir:1.6
+      - image: circleci/elixir:1.6
         environment:
           MIX_ENV: test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_HOST: localhost
-      - image: postgres:9.6
+      - image: circleci/postgres:9.6
         environment:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
