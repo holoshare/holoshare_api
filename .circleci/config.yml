@@ -21,5 +21,6 @@ jobs:
       - run:
           name: Wait for PostgreSQL
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run: mkdir -p priv/repo/migrations  # Remove this when the migrations folder is not empty
       - run: mix ecto.create && mix ecto.migrate
       - run: mix test
