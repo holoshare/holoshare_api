@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: holoshare/holoshare_api
+      - image: holoshare/holoshare_api:0.1.0
         environment:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
